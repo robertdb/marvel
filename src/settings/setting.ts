@@ -1,0 +1,1 @@
+export const API = 'http://gateway.marvel.com/v1/public/'
