@@ -8,7 +8,7 @@ export const fetchCharacters = async () => {
         }
     }
     try {
-        let res = await axios.get(`${API}comics?ts=${ts}&apikey=${apikey}&hash=${hash}`, config);
+        let res = await axios.get(`${API}characters?limit=100&ts=${ts}&apikey=${apikey}&hash=${hash}`, config);
         let data = await res.data;
         return data;
     } catch (e) {

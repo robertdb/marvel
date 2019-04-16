@@ -1,9 +1,11 @@
 import * as React from 'react';
-const { useEffect } = React;
-
 import { Props } from './';
-
-const Characters = ({ characters, setCharacters, fetchingCharacter, error }: Props) => {
+import Characters from '../../components/Characters';
+import {
+    Container,
+} from './style';
+const { useEffect } = React;
+const CharactersWrapper = ({ characters, setCharacters, fetchingCharacter, error }: Props) => {
     useEffect(() => {
         if (fetchingCharacter === null) {
             setCharacters();
@@ -16,18 +18,15 @@ const Characters = ({ characters, setCharacters, fetchingCharacter, error }: Pro
     if (error) {
         return <div style={{ color: 'red' }}>{error}</div>
     }
+    console.log(characters.length);
     return (
-        <div>
-            {characters.map((character) => {
-                <div>
-                    <h1>{character.title}</h1>
-                </div>
-            })}
-        </div>
+        <Container>
+            <Characters characters={characters} />
+        </Container>
     );
 }
 
-export default Characters;
+export default CharactersWrapper;
 
 // helpers
 

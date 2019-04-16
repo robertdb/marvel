@@ -8,6 +8,78 @@ import { ThunkDispatch } from 'redux-thunk'
     // Local State Component
 }*/
 
+interface ICharacterThumbnail {
+    path: string,
+    extension: string
+}
+interface ICharacterComicsItem {
+    resourceURI: string,
+    name: string
+}
+interface ICharacterComics {
+    available: number,
+    collectionURI: string,
+    items: Array<ICharacterComicsItem>,
+    returned: number
+}
+
+interface ICharacterSeriesItem {
+    resourceURI: string,
+    name: string
+}
+
+interface ICharacterSeries {
+    available: number,
+    collectionURI: string,
+    items: Array<ICharacterSeriesItem>,
+    returned: number
+}
+
+interface ICharacterStoriesItem {
+    resourceURI: string,
+    name: string,
+    type: string
+}
+
+interface ICharacterStories {
+    available: number,
+    collectionURI: string,
+    items: Array<ICharacterStoriesItem>,
+    returned: number
+}
+
+interface ICharacterEventsItem {
+    resourceURI: string,
+    name: string
+}
+
+interface ICharacterEvents {
+    available: number,
+    collectionURI: string,
+    items: Array<ICharacterEventsItem>,
+    returned: 1
+}
+
+interface ICharacterUrl {
+    type: string,
+    url: string
+}
+
+
+export interface ICharacter {
+    id: number,
+    name: string,
+    description: string,
+    modified: string,
+    thumbnail: ICharacterThumbnail,
+    resourceURI: string,
+    comics: ICharacterComics,
+    series: ICharacterSeries,
+    stories: ICharacterStories,
+    events: ICharacterEvents,
+    urls: Array<ICharacterUrl>
+}
+
 interface OwnProps {
 
 }
@@ -16,8 +88,9 @@ interface DispatchProps {
     setCharacters: () => void
 }
 
+
 interface StateProps {
-    characters: Array<any>,
+    characters: Array<ICharacter>,
     fetchingCharacter: boolean,
     error: null | string
 }
