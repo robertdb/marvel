@@ -1,9 +1,5 @@
-import { API } from '../settings/setting';
+import { API, ts, apikey, hash } from '../settings/setting';
 const axios = require('axios');
-
-const ts = '61781402';
-const apikey = 'e76320ce4b68d79d3a6d8854016aecc4';
-const hash = '8166a944e9a09d37c9ca77e1b67479ea';
 
 export const fetchCharacters = async () => {
     const config = {

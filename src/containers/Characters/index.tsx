@@ -9,7 +9,7 @@ import { ThunkDispatch } from 'redux-thunk'
 }*/
 
 interface OwnProps {
-    // Own Props
+
 }
 
 interface DispatchProps {
@@ -18,7 +18,8 @@ interface DispatchProps {
 
 interface StateProps {
     characters: Array<any>,
-    fetchingCharacter: boolean
+    fetchingCharacter: boolean,
+    error: null | string
 }
 export type Props = StateProps & OwnProps & DispatchProps;
 
@@ -26,7 +27,8 @@ export type Props = StateProps & OwnProps & DispatchProps;
 export function mapStateToProps({ characters }: ApplicationState) {
     return {
         characters: characters.characters,
-        fetchingCharacter: characters.isFetching
+        fetchingCharacter: characters.isFetching,
+        error: characters.error
     };
 }
 

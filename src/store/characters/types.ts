@@ -9,6 +9,9 @@ export const FETCHING_CHARACTERS = '@@character/FETCHING_CHARACTERS';
 export type FETCHING_CHARACTERS = typeof FETCHING_CHARACTERS;
 
 
+export const ERROR_CHARATERS_REQUEST = '@@character/ERROR_CHARATERS_REQUEST';
+export type ERROR_CHARATERS_REQUEST = typeof ERROR_CHARATERS_REQUEST;
+
 // Our character-level state object
 // ...
 
@@ -26,5 +29,9 @@ export interface IfetchingCharacters extends Action {
     }
 }
 
+export interface IErrorCharacterRequest extends Action {
+    type: ERROR_CHARATERS_REQUEST
+}
+
 // Down here, we'll create a discriminated union type of all actions which will be used for our reducer.
-export type CharacterActions = IsetCharacters | IfetchingCharacters
+export type CharacterActions = IsetCharacters | IfetchingCharacters | IErrorCharacterRequest;

@@ -3,7 +3,7 @@ const { useEffect } = React;
 
 import { Props } from './';
 
-const Characters = ({ characters, setCharacters, fetchingCharacter }: Props) => {
+const Characters = ({ characters, setCharacters, fetchingCharacter, error }: Props) => {
     useEffect(() => {
         if (fetchingCharacter === null) {
             setCharacters();
@@ -12,6 +12,9 @@ const Characters = ({ characters, setCharacters, fetchingCharacter }: Props) => 
     });
     if (fetchingCharacter || fetchingCharacter === null) {
         return <div>Loading Characters!!</div>
+    }
+    if (error) {
+        return <div style={{ color: 'red' }}>{error}</div>
     }
     return (
         <div>

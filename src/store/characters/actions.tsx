@@ -11,8 +11,10 @@ import {
 import {
     IsetCharacters,
     IfetchingCharacters,
+    IErrorCharacterRequest,
     SET_CHARACTERS,
-    FETCHING_CHARACTERS
+    FETCHING_CHARACTERS,
+    ERROR_CHARATERS_REQUEST
 } from './types';
 
 import { fetchCharacters } from '../../services/characters';
@@ -26,13 +28,17 @@ export const setCharactersCreator: ActionCreator<IsetCharacters> = (characters: 
         characters
     }
 })
-
 export const fetchingCharactersCreator: ActionCreator<IfetchingCharacters> = (fetching: boolean) => ({
     type: FETCHING_CHARACTERS,
     payload: {
         fetching
     }
 })
+export const errorCharacterRequest: ActionCreator<IErrorCharacterRequest> = () => ({
+    type: ERROR_CHARATERS_REQUEST,
+})
+
+
 
 // thunk action
 export const setCharacters = (): ThunkAction<Promise<void>, {}, {}, AnyAction> => {
@@ -46,7 +52,9 @@ export const setCharacters = (): ThunkAction<Promise<void>, {}, {}, AnyAction> =
             }
             dispatch(fetchingCharactersCreator(false));
         } catch (error) {
-            console.log("Awkward situation, api marvel not working");
+            dispatch(fetchingCharactersCreator(false));
+            dispatch(errorCharacterRequest());
+            console.log('Awkward situation, api marvel not working');
         }
     }
 }

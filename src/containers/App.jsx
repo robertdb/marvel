@@ -4,7 +4,7 @@ import Characters from './Characters';
 const App = () => {
     return (
         <div>
-            <Characters characters={[]} />
+            <Characters />
         </div>
     );
 }
