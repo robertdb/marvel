@@ -10,12 +10,15 @@ import {
 
 const SearchCharacters = ({ name, onChange }: Props) => {
     return (
-        <Form>
+        <Form onSubmit={e => {
+            e.preventDefault();
+
+        }}>
             <Title>Find your character!</Title>
             <InputSearch
                 type="text"
                 value={name}
-                onChange={(e) => onChange(e.target.value)}
+                onChange={(e) => { onChange(e.target.value) }}
             />
         </Form>
     )
