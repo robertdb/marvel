@@ -1,5 +1,5 @@
 import Characters from './Characters';
-import { setCharacters } from '../../store/characters/actions';
+import { setCharacters, updateSearchableCharacter } from '../../store/characters/actions';
 import { ApplicationState } from '../../store';
 import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk'
@@ -85,14 +85,16 @@ interface OwnProps {
 }
 
 interface DispatchProps {
-    setCharacters: () => void
+    setCharacters: (name: string) => void,
+    updateSearchableCharacter: (name: string) => void
 }
 
 
 interface StateProps {
     characters: Array<ICharacter>,
     fetchingCharacter: boolean,
-    error: null | string
+    error: null | string,
+    name: string
 }
 export type Props = StateProps & OwnProps & DispatchProps;
 
@@ -101,13 +103,15 @@ export function mapStateToProps({ characters }: ApplicationState) {
     return {
         characters: characters.characters,
         fetchingCharacter: characters.isFetching,
-        error: characters.error
+        error: characters.error,
+        name: characters.name
     };
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, any>, ownProps: OwnProps): DispatchProps => {
     return {
-        setCharacters: () => dispatch(setCharacters())
+        setCharacters: (name: string) => dispatch(setCharacters(name)),
+        updateSearchableCharacter: (name: string) => dispatch(updateSearchableCharacter(name))
     }
 }
 

@@ -3,6 +3,7 @@ import * as React from 'react';
 import {
     ContainerCharacter,
     TitleCharacter,
+    DescriptionCharacter,
     ImageCharacter
 } from './style';
 
@@ -11,8 +12,11 @@ const ItemCharacter = ({ item }: any) => {
     return (
         <ContainerCharacter>
             <TitleCharacter>
-                {name}<br />{description}
+                {name}
             </TitleCharacter>
+            <DescriptionCharacter>
+                {description.replace(/<(?:.|\n)*?>/gm, '')}
+            </DescriptionCharacter>
             <ImageCharacter
                 src={`${thumbnail.path}.${thumbnail.extension}`}
                 alt="character"

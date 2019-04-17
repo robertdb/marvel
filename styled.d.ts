@@ -9,5 +9,9 @@ declare module 'styled-components' {
       main: string
       secondary: string
     }
+    createGlobalStyle(
+      strings: TemplateStringsArray,
+      ...interpolations: SimpleInterpolation[]
+    ): React.ComponentClass;
   }
 }

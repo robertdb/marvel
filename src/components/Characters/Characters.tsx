@@ -3,7 +3,6 @@ import { Props, ItemProps } from './';
 import ItemCharacter from './ItemCharacter';
 import {
     ContainerCharacters,
- 
 } from './style';
 
 const Characters = ({ characters }: Props) => {
@@ -13,7 +12,7 @@ const Characters = ({ characters }: Props) => {
                 const { id } = character;
                 return (
                     <React.Fragment key={id}>
-                        <ItemCharacter item={character}/>
+                        <ItemCharacter item={character} />
                     </React.Fragment>
                 )
 

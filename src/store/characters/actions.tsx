@@ -12,9 +12,11 @@ import {
     IsetCharacters,
     IfetchingCharacters,
     IErrorCharacterRequest,
+    IupdateSearchableCharacter,
     SET_CHARACTERS,
     FETCHING_CHARACTERS,
-    ERROR_CHARATERS_REQUEST
+    ERROR_CHARATERS_REQUEST,
+    UPDATE_SEARCHABLE_CHARACTER
 } from './types';
 
 import { fetchCharacters } from '../../services/characters';
@@ -38,15 +40,24 @@ export const errorCharacterRequest: ActionCreator<IErrorCharacterRequest> = () =
     type: ERROR_CHARATERS_REQUEST,
 })
 
+export const updateSearchableCharacterCreator: ActionCreator<IupdateSearchableCharacter> = (name: string) => ({
+    type: UPDATE_SEARCHABLE_CHARACTER,
+    payload: {
+        name
+    }
+})
 
 
-// thunk action
-export const setCharacters = (): ThunkAction<Promise<void>, {}, {}, AnyAction> => {
+
+
+
+// THUNK ACTIONS
+export const setCharacters = (name: string): ThunkAction<Promise<void>, {}, {}, AnyAction> => {
     // Invoke API
     return async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<void> => {
         dispatch(fetchingCharactersCreator(true));
         try {
-            const data = await fetchCharacters();
+            const data = await fetchCharacters(name);
             if (data.status == "Ok") {
                 dispatch(setCharactersCreator(data.data.results));
             }
@@ -56,5 +67,15 @@ export const setCharacters = (): ThunkAction<Promise<void>, {}, {}, AnyAction> =
             dispatch(errorCharacterRequest());
             console.log('Awkward situation, api marvel not working');
         }
+    }
+}
+
+export const updateSearchableCharacter = (name: string): ThunkAction<Promise<void>, {}, {}, AnyAction> => {
+    return async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<void> => {
+        await dispatch(updateSearchableCharacterCreator(name));
+        if (name.length > 2) {
+            await dispatch(setCharacters(name));
+        }
+
     }
 }
